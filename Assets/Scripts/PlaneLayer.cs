@@ -58,6 +58,7 @@ public class PlaneLayer : CanvasGroupExtend
         currentData = data;
         currentPage = 0;
         Content.sprite = data.pageInfo[0];
+        NextPageVisible();
         OpenSelf();
 
         foreach (Tweener item in ClickableObject.sparkTweener)
@@ -78,6 +79,15 @@ public class PlaneLayer : CanvasGroupExtend
         if(currentData.pageInfo.Count > 1 && currentPage < currentData.pageInfo.Count - 1){
             currentPage++;
             Content.sprite = currentData.pageInfo[currentPage];
+            NextPageVisible();
+        }
+    }
+
+    void NextPageVisible(){
+        if(currentPage + 1 < currentData.pageInfo.Count){
+            BTNNext.gameObject.SetActive(true);
+        } else {
+            BTNNext.gameObject.SetActive(false);
         }
     }
 }
