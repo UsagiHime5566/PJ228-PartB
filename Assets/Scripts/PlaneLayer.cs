@@ -29,12 +29,7 @@ public class PlaneLayer : CanvasGroupExtend
         MaskPanel?.onClick.AddListener(OnClosePage);
         BTNClose?.onClick.AddListener(OnClosePage);
         BTNNext?.onClick.AddListener(OnNextPage);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        RunBatCmd.CreateBatFile();
     }
 
     void OnObjectClick(ClickData data){
