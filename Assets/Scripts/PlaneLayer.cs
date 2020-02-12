@@ -17,6 +17,11 @@ public class PlaneLayer : CanvasGroupExtend
     CanvasGroup canvasGroup;
     ClickData currentData;
     int currentPage;
+
+    //Cursor
+    int cursorStayTime = 0;
+    Vector3 lastCursorPos;
+
     void Awake() {
         instance = this;
         ClickableObject.OnClickObject = null;
@@ -30,6 +35,20 @@ public class PlaneLayer : CanvasGroupExtend
         BTNClose?.onClick.AddListener(OnClosePage);
         BTNNext?.onClick.AddListener(OnNextPage);
         RunBatCmd.CreateBatFile();
+    }
+
+    void Update(){
+        if(lastCursorPos != Input.mousePosition){
+            Cursor.visible = true;
+            cursorStayTime = 0;
+        } else {
+            if(cursorStayTime < 30){
+                cursorStayTime++;
+            } else {
+                Cursor.visible = false;
+            }
+        }
+        lastCursorPos = Input.mousePosition;
     }
 
     void OnObjectClick(ClickData data){
